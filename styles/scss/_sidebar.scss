@@ -1,0 +1,90 @@
+$sidebar-size:100px;
+
+.sidebar{
+	min-width:$sidebar-size;
+
+	&-items{
+		list-style: none;
+		padding:0;
+		margin:0;
+	}
+
+	&-item{
+		height:$sidebar-size;
+		width: $sidebar-size;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 10px;
+		position:relative;
+		background-size: cover;
+		background-position: center;
+		box-shadow: 0 0 5px 3px rgba(0,0,0,0.1);
+		border-radius:5px;
+
+		&__button{
+			border:none;
+			position:absolute;
+			cursor:pointer;
+		}
+
+		&__button-add{
+			border-radius:5px;
+			background-color: $c-onyx;
+			top:0;
+			left:0;
+			height:100%;
+			width:100%;
+			transition:background-color 0.3s;
+
+			&:hover{
+				background-color:rgba($c-onyx, 0.8);
+				svg{
+					transform:scale(0.9);
+				}
+			}
+		}
+
+		svg{
+			fill:white;
+			transition:transform 0.3s;
+		}
+
+		#input-image{
+			display:none;
+		}
+
+		&__button-delete{
+			top:-0.5rem;
+			right:-0.5rem;
+			height:2rem;
+			width:2rem;
+			border-radius:50%;
+			background-color: $c-rust;
+
+			&:hover{
+				background-color:rgba($c-rust, 0.8);
+				svg{
+					transform:scale(0.9);
+				}
+			}
+
+			svg{
+				height:60%;
+				width:60%;
+			}
+		}
+	}
+
+	@include max-query($d-max-small){
+		&-items{
+			display:flex;
+			align-items: center;
+		}
+
+		&-item{
+			margin-right:10px;
+			margin-bottom:0;
+		}
+	}
+}

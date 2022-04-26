@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+@import "mixins";
+@import "variables";
+@import "actionsDropdown";
+@import "sidebar";
+@import "content";
+
+*{
+	box-sizing: border-box;
+}
+
+.sr-only{
+	display:block;
+	height:1px;
+	width:1px;
+	overflow:hidden;
+	margin:0;
+}
+
+body{
+	padding:10px;
+	margin:0;
+	display:flex;
+	align-items:stretch;
+	min-height: 100vh;
+	font-family: 'Roboto', sans-serif;
+
+	@include max-query($d-max-small){
+		flex-direction:column;
+	}
+}
+
+button{
+	font-family: inherit;
+	font-size: inherit;
+}

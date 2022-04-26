@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Compass</title>
+	<link rel="stylesheet" href="./styles/css/index.css">
+</head>
+<body>
+	<main class="content">
+		<strong class="content-reminder">Please enable Location for accurate reading</strong>
+		<div class="content-directions-container">
+			<div class="content-directions">
+				<p class="content-direction content-direction--north">N</p>
+				<p class="content-direction content-direction--east">E</p>
+				<p class="content-direction content-direction--west">W</p>
+				<p class="content-direction content-direction--south">S</p>
+				<p class="content-directions__text">0 deg</p>
+			</div>
+		</div>
+		<div class="content-layers">
+		</div>
+	</main>
+	<aside class="sidebar">
+		<ul class="sidebar-items">
+			<li class="sidebar-item">
+				<button class="sidebar-item__button sidebar-item__button-add" aria-label="Add image" title="Add image">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+				</button>
+				<input type="file" id="input-image">
+			</li>
+		</ul>
+	</aside>
+	<script src="index.js"></script>
+</body>
+</html>
