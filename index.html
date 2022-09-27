@@ -8,15 +8,27 @@
 	<link rel="stylesheet" href="./styles/css/index.css">
 </head>
 <body>
+	<header>
+		<label class="header-enable" for="compassEnabled">
+			Enable compass?
+			<input type="checkbox" id="compassEnabled" checked>
+		</label>
+		<label class="header-angle" for="compassAngle">
+			Angle:
+			<input type="number" id="compassAngle" readonly>
+		</label>
+	</header>
 	<main class="content">
-		<strong class="content-reminder">Please enable Location for accurate reading</strong>
-		<div class="content-directions-container">
-			<div class="content-directions">
-				<p class="content-direction content-direction--north">N</p>
-				<p class="content-direction content-direction--east">E</p>
-				<p class="content-direction content-direction--west">W</p>
-				<p class="content-direction content-direction--south">S</p>
-				<p class="content-directions__text">0 deg</p>
+		<div class="content-compass">
+			<strong class="content-reminder">Please enable Location for accurate reading</strong>
+			<div class="content-directions-container">
+				<div class="content-directions">
+					<p class="content-direction content-direction--north">N</p>
+					<p class="content-direction content-direction--east">E</p>
+					<p class="content-direction content-direction--west">W</p>
+					<p class="content-direction content-direction--south">S</p>
+					<p type="text" class="content-directions__text">0</p>
+				</div>
 			</div>
 		</div>
 		<div class="content-layers">

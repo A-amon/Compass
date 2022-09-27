@@ -1,3 +1,4 @@
+var isCompassEnabled = true
 
 const addImageBtn = document.querySelector(".sidebar-item__button")
 const addImageInput = document.querySelector("#input-image")
@@ -101,16 +102,20 @@ var isCompassEnabled = false
 var northAngle = 0
 const compass = document.querySelector(".content-directions")
 const compassText = document.querySelector(".content-directions__text")
+const compassAngleInput = document.querySelector("#compassAngle")
 
 /**
  * Watch for device movement
  * Update layers(with added compass) when device rotates
  */
 const handleDeviceOrientation = (event) => {
-	const heading = Math.abs(event.alpha - 360)
-	compassText.textContent = heading.toFixed(1)
-	northAngle = heading * -1
-	rotateLayersWithCompass(northAngle)
+	if(isCompassEnabled){
+		const heading = Math.abs(event.alpha - 360)
+		compassText.textContent = heading.toFixed(1)
+		compassAngleInput.value = heading.toFixed(1)
+		northAngle = heading * -1
+		rotateLayersWithCompass(northAngle)
+	}
 }
 
 /**
@@ -125,6 +130,26 @@ const rotateLayersWithCompass = (angle) => {
 	compass.style.transform = `rotate(${angle}deg)`
 }
 
+const compassEnabledInput = document.querySelector("#compassEnabled")
+
+const handleCompassEnabledChange = (event) => {
+	const isChecked = event.target.checked
+	isCompassEnabled = isChecked
+	if(isChecked){
+		compassAngleInput.setAttribute("readonly", true)
+	}
+	else{
+		compassAngleInput.removeAttribute("readonly")
+	}
+}
+
+const handleCompassAngleInputChange = (event) => {
+	const angle = event.target.value
+	compassText.textContent = angle
+	rotateLayersWithCompass(angle)
+}
+
+
 addImageBtn.addEventListener("click", handleAddImageClick)
 if(window.DeviceOrientationEvent && 'ontouchstart' in window){
 	isCompassEnabled = true
@@ -134,3 +159,5 @@ else{
 	isCompassEnabled = false
 }
 
+compassEnabledInput.addEventListener("change", handleCompassEnabledChange)
+compassAngleInput.addEventListener("change", handleCompassAngleInputChange)

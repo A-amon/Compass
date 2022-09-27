@@ -1,4 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+.header-enable, .header-angle {
+  display: block;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.header-enable input, .header-angle input {
+  width: 100px;
+  font-size: 1rem;
+}
+
+.header-angle input:-moz-read-only {
+  border: 0;
+  opacity: 0.5;
+}
+
+.header-angle input:read-only {
+  border: 0;
+  opacity: 0.5;
+}
+
 .actions-dropdown {
   background-color: white;
   position: absolute;
@@ -224,7 +245,9 @@
 }
 
 .content-reminder {
+  display: block;
   text-align: center;
+  padding: 0.5rem 0;
 }
 
 .content-directions {
@@ -271,6 +294,18 @@
 
 .content-directions__text {
   font-size: 2rem;
+  width: 50%;
+  text-align: center;
+}
+
+.content-directions__text:-moz-read-only {
+  border: none;
+  background: none;
+}
+
+.content-directions__text:read-only {
+  border: none;
+  background: none;
 }
 
 .content-direction {

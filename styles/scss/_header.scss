@@ -1,0 +1,16 @@
+.header{
+	&-enable, &-angle{
+		display: block;
+		padding:0.5rem 0;
+		text-align: center;
+		input{
+			width: 100px;
+			font-size: 1rem;
+		}
+	}
+
+	&-angle input:read-only{
+		border:0;
+		opacity:0.5;
+	}
+}

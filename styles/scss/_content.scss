@@ -9,7 +9,9 @@
 	flex-direction: column;
 
 	&-reminder{
+		display: block;
 		text-align: center;
+		padding:0.5rem 0;
 	}
 
 	&-directions{
@@ -40,6 +42,12 @@
 
 		&__text{
 			font-size: 2rem;
+			width: 50%;
+			text-align: center;
+			&:read-only{
+				border:none;
+				background:none;
+			}
 		}
 	}
 
