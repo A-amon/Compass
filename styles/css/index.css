@@ -1,4 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header input {
+  margin: 0;
+}
+
 .header-enable, .header-angle {
   display: block;
   padding: 0.5rem 0;
@@ -251,11 +268,12 @@
 }
 
 .content-directions {
+  background-size: contain;
   position: relative;
   border-radius: 50%;
   height: 200px;
   width: 200px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: lightgray;
   z-index: 999;
   display: -webkit-box;
   display: -ms-flexbox;

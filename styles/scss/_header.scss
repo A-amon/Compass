@@ -1,4 +1,11 @@
 .header{
+	display: flex;
+	flex-direction:column;
+	align-items:center;
+	input{
+		margin:0;	
+	}
+
 	&-enable, &-angle{
 		display: block;
 		padding:0.5rem 0;

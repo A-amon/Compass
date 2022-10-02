@@ -149,6 +149,31 @@ const handleCompassAngleInputChange = (event) => {
 	rotateLayersWithCompass(angle)
 }
 
+const compassOpacityInput = document.querySelector("#compassOpacity")
+
+const handleCompassOpacityInputChange = (event) => {
+	compass.style.opacity = event.target.value / 100
+}
+
+const compassSizeInput = document.querySelector("#compassSize")
+const compassContainer = document.querySelector(".content-directions-container")
+
+const handleCompassSizeInputChange = (event) => {
+	compassContainer.style.transform = `scale(${event.target.value / 100})`
+}
+
+const compassImageInput = document.querySelector("#compassImage")
+const compassDirections = document.querySelectorAll(".content-direction")
+
+const handleCompassImageInputChange = (event) => {
+	const [image] = compassImageInput.files
+	if(image){
+		for(const direction of compassDirections){
+			direction.style.display = "none";
+		}
+		compass.style.backgroundImage = `url(${URL.createObjectURL(image)})`
+	}
+}
 
 addImageBtn.addEventListener("click", handleAddImageClick)
 if(window.DeviceOrientationEvent && 'ontouchstart' in window){
@@ -161,3 +186,6 @@ else{
 
 compassEnabledInput.addEventListener("change", handleCompassEnabledChange)
 compassAngleInput.addEventListener("change", handleCompassAngleInputChange)
+compassOpacityInput.addEventListener("input", handleCompassOpacityInputChange)
+compassSizeInput.addEventListener("input", handleCompassSizeInputChange)
+compassImageInput.addEventListener("change", handleCompassImageInputChange)
