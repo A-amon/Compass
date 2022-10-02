@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 .header {
+  text-align: center;
+}
+
+.header .settings {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: auto;
+}
+
+.header .settings__items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,6 +21,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 1rem;
 }
 
 .header input {
@@ -18,7 +30,6 @@
 
 .header-enable, .header-angle {
   display: block;
-  padding: 0.5rem 0;
   text-align: center;
 }
 
@@ -240,34 +251,7 @@
   }
 }
 
-.content {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  margin: 0 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-box-pack: stretch;
-      -ms-flex-pack: stretch;
-          justify-content: stretch;
-  position: relative;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.content-reminder {
-  display: block;
-  text-align: center;
-  padding: 0.5rem 0;
-}
-
-.content-directions {
+.compass-directions {
   background-position: center;
   background-size: contain;
   position: relative;
@@ -291,7 +275,8 @@
   transition: transform 0.3s linear, -webkit-transform 0.3s linear;
 }
 
-.content-directions-container {
+.compass-directions-container {
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -311,23 +296,23 @@
           justify-content: center;
 }
 
-.content-directions__text {
+.compass-directions__text {
   font-size: 2rem;
   width: 50%;
   text-align: center;
 }
 
-.content-directions__text:-moz-read-only {
+.compass-directions__text:-moz-read-only {
   border: none;
   background: none;
 }
 
-.content-directions__text:read-only {
+.compass-directions__text:read-only {
   border: none;
   background: none;
 }
 
-.content-direction {
+.compass-direction {
   max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -335,40 +320,35 @@
   margin: 0;
 }
 
-.content-direction--north, .content-direction--south {
+.compass-direction--north, .compass-direction--south {
   left: 0;
   right: 0;
   margin: auto;
 }
 
-.content-direction--north {
+.compass-direction--north {
   top: 0;
 }
 
-.content-direction--south {
+.compass-direction--south {
   bottom: 0;
 }
 
-.content-direction--east, .content-direction--west {
+.compass-direction--east, .compass-direction--west {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
 
-.content-direction--east {
+.compass-direction--east {
   right: 0;
 }
 
-.content-direction--west {
+.compass-direction--west {
   left: 0;
 }
 
-.content-layer {
-  height: 100%;
-  width: 100%;
-}
-
-.content-layers {
+.layers {
   background-color: rgba(15, 15, 15, 0.1);
   position: relative;
   -webkit-box-flex: 1;
@@ -376,7 +356,7 @@
           flex: 1;
 }
 
-.content-layer {
+.layer {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -390,12 +370,8 @@
   transition: -webkit-transform 0.3s linear;
   transition: transform 0.3s linear;
   transition: transform 0.3s linear, -webkit-transform 0.3s linear;
-}
-
-@media screen and (max-width: 768px) {
-  .content {
-    margin: 0;
-  }
+  height: 100%;
+  width: 100%;
 }
 
 * {
@@ -422,14 +398,42 @@ body {
           align-items: stretch;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .reminder {
+  display: block;
+  text-align: center;
+  padding: 0.5rem 0;
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+  main {
+    margin: 0;
   }
 }
 

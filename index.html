@@ -9,41 +9,52 @@
 </head>
 <body>
 	<header class="header">
-		<label class="header-enable" for="compassEnabled">
-			Enable compass?
-			<input type="checkbox" id="compassEnabled" checked>
-		</label>
-		<label class="header-angle" for="compassAngle">
-			Angle:
-			<input type="number" id="compassAngle" readonly>
-		</label>
-		<label for="compassOpacity" class="header-opacity">
-			Compass Opacity:
-			<input type="range" min="0" max="100" value="100" step="1" id="compassOpacity">
-		</label>
-		<label for="compassSize" class="header-size">
-			Compass Size:
-			<input type="range" min="0" max="100" value="100" step="1" id="compassSize">
-		</label>
-		<label for="compassImage" class="header-image">
-			Compass Image:
-			<input type="file" id="compassImage">
-		</label>
+		<strong class="reminder">Please enable Location for accurate reading</strong>
+		<details class="settings">
+			<summary>Settings</summary>
+			<div>
+				<fieldset class="settings__items">
+					<label class="header-enable" for="compassEnabled">
+						Enable Compass?
+						<input type="checkbox" id="compassEnabled" checked>
+					</label>
+					<label class="header-angle" for="compassAngle">
+						Angle:
+						<input type="number" id="compassAngle" readonly>
+					</label>
+					<label for="compassOpacity" class="header-opacity">
+						Compass Opacity:
+						<input type="range" min="0" max="100" value="100" step="1" id="compassOpacity">
+					</label>
+					<label for="compassSize" class="header-size">
+						Compass Size:
+						<input type="number" id="compassSize">
+					</label>
+					<label for="compassImage" class="header-image">
+						Compass Image:
+						<input type="file" id="compassImage">
+					</label>
+					<label for="compassBounds" class="header-bounds">
+						Remove Compass Bounds
+						<input type="checkbox" id="compassBounds">
+					</label>
+				</fieldset>
+			</div>
+		</details>
 	</header>
-	<main class="content">
-		<div class="content-compass">
-			<strong class="content-reminder">Please enable Location for accurate reading</strong>
-			<div class="content-directions-container">
-				<div class="content-directions">
-					<p class="content-direction content-direction--north">N</p>
-					<p class="content-direction content-direction--east">E</p>
-					<p class="content-direction content-direction--west">W</p>
-					<p class="content-direction content-direction--south">S</p>
-					<p type="text" class="content-directions__text">0</p>
+	<main>
+		<div class="compass">
+			<div class="compass-directions-container">
+				<div class="compass-directions">
+					<p class="compass-direction compass-direction--north">N</p>
+					<p class="compass-direction compass-direction--east">E</p>
+					<p class="compass-direction compass-direction--west">W</p>
+					<p class="compass-direction compass-direction--south">S</p>
+					<p type="text" class="compass-directions__text">0</p>
 				</div>
 			</div>
 		</div>
-		<div class="content-layers">
+		<div class="layers">
 		</div>
 	</main>
 	<aside class="sidebar">

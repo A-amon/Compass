@@ -1,0 +1,76 @@
+
+.compass{
+	&-directions{
+		background-position: center;
+		background-size: contain;
+		position:relative;
+		border-radius:50%;
+		height:200px;
+		width:200px;
+		background-color: lightgray;
+		z-index: 999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition:transform 0.3s linear;
+
+		&-container{
+			overflow: hidden;
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			margin:auto;
+			height:100%;
+			width:100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		&__text{
+			font-size: 2rem;
+			width: 50%;
+			text-align: center;
+			&:read-only{
+				border:none;
+				background:none;
+			}
+		}
+	}
+
+	&-direction{
+		max-width: fit-content;
+		position: absolute;
+		margin:0;
+
+		&--north, &--south{
+			left:0;
+			right:0;
+			margin:auto;
+		}
+
+		&--north{
+			top:0;
+		}
+
+		&--south{
+			bottom:0;
+		}
+
+		&--east, &--west{
+			top:50%;
+			transform:translateY(-50%);
+		}
+
+		&--east{
+			right:0;
+		}
+
+		&--west{
+			left:0;
+		}
+	}
+
+}

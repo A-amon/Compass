@@ -58,7 +58,7 @@ const addSidebarItem = (imageURL) => {
 	sidebarItems.append(sidebarItemButton)
 }
 
-const contentLayers = document.querySelector(".content-layers")
+const layers = document.querySelector(".layers")
 const layersWithCompass = []
 
 const handleAddCompassClick = (event, sidebarItem) => {
@@ -70,13 +70,13 @@ const handleAddCompassClick = (event, sidebarItem) => {
 const handleImageOpacityChange = (event, sidebarItem) => {
 	const sidebarItemInd = getSidebarItemInd(sidebarItem)
 	const opacityValue = parseInt(event.target.value)/100
-	contentLayers.children[sidebarItemInd].style.opacity = opacityValue
+	layers.children[sidebarItemInd].style.opacity = opacityValue
 }
 
 const handleDeleteImageClick = (event, sidebarItem) => {
 	const sidebarItemInd = getSidebarItemInd(sidebarItem)
 	sidebarItems.removeChild(sidebarItem)
-	contentLayers.removeChild(contentLayers.children[sidebarItemInd])
+	layers.removeChild(layers.children[sidebarItemInd])
 }
 
 /**
@@ -84,13 +84,13 @@ const handleDeleteImageClick = (event, sidebarItem) => {
  * @param {string} imageURL 
  */
 const addLayer = (imageURL) => {
-	const layersCount = contentLayers.children.length - 1
+	const layersCount = layers.children.length - 1
 	const newLayer = document.createElement("div")
 	const newLayerInd = layersCount + 1
-	newLayer.className = `content-layer content-layer_${newLayerInd}`
+	newLayer.className = `layer layer_${newLayerInd}`
 	newLayer.style.backgroundImage = `url(${imageURL})`
 	newLayer.style.zIndex = newLayerInd
-	contentLayers.append(newLayer)
+	layers.append(newLayer)
 }
 
 const getSidebarItemInd = (sidebarItem) => {
@@ -100,8 +100,8 @@ const getSidebarItemInd = (sidebarItem) => {
 
 var isCompassEnabled = false
 var northAngle = 0
-const compass = document.querySelector(".content-directions")
-const compassText = document.querySelector(".content-directions__text")
+const compass = document.querySelector(".compass-directions")
+const compassText = document.querySelector(".compass-directions__text")
 const compassAngleInput = document.querySelector("#compassAngle")
 
 /**
@@ -125,7 +125,7 @@ const handleDeviceOrientation = (event) => {
  */
 const rotateLayersWithCompass = (angle) => {
 	for(const layerInd of layersWithCompass){
-		contentLayers.children[layerInd].style.transform = `rotate(${angle}deg)`
+		layers.children[layerInd].style.transform = `rotate(${angle}deg)`
 	}
 	compass.style.transform = `rotate(${angle}deg)`
 }
@@ -156,14 +156,14 @@ const handleCompassOpacityInputChange = (event) => {
 }
 
 const compassSizeInput = document.querySelector("#compassSize")
-const compassContainer = document.querySelector(".content-directions-container")
+const compassContainer = document.querySelector(".compass-directions-container")
 
 const handleCompassSizeInputChange = (event) => {
-	compassContainer.style.transform = `scale(${event.target.value / 100})`
+	compassContainer.style.transform = `scale(${event.target.value})`
 }
 
 const compassImageInput = document.querySelector("#compassImage")
-const compassDirections = document.querySelectorAll(".content-direction")
+const compassDirections = document.querySelectorAll(".compass-direction")
 
 const handleCompassImageInputChange = (event) => {
 	const [image] = compassImageInput.files
@@ -172,6 +172,26 @@ const handleCompassImageInputChange = (event) => {
 			direction.style.display = "none";
 		}
 		compass.style.backgroundImage = `url(${URL.createObjectURL(image)})`
+	}
+}
+
+const compassBoundsInput = document.querySelector("#compassBounds")
+const compassDefaultBounds = {
+	height:compass.style.height,
+	width:compass.style.width,
+	borderRadius:compass.style.borderRadius
+}
+
+const handleCompassBoundsInputChange = (event) => {
+	const {checked} = event.target
+
+	if(checked){
+		compass.style.height = "100%"
+		compass.style.width = "100%"
+		compass.style.borderRadius = "unset"
+	}
+	else{
+		compass.style = {...compass.style, ...compassDefaultBounds}
 	}
 }
 
@@ -189,3 +209,4 @@ compassAngleInput.addEventListener("change", handleCompassAngleInputChange)
 compassOpacityInput.addEventListener("input", handleCompassOpacityInputChange)
 compassSizeInput.addEventListener("input", handleCompassSizeInputChange)
 compassImageInput.addEventListener("change", handleCompassImageInputChange)
+compassBoundsInput.addEventListener("change", handleCompassBoundsInputChange)
