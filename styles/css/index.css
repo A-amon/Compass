@@ -4,10 +4,19 @@
 }
 
 .header .settings {
+  position: relative;
+}
+
+.header .settings__body {
+  position: absolute;
+  background: white;
+  left: 0;
+  right: 0;
+  margin: auto;
   max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
-  margin: auto;
+  z-index: 1000;
 }
 
 .header .settings__items {
@@ -51,8 +60,11 @@
 .actions-dropdown {
   background-color: white;
   position: absolute;
-  top: 50%;
-  right: 50%;
+  top: 20%;
+  right: 0;
+  left: 0;
+  margin: auto;
+  min-width: 150px;
   z-index: 1;
   border-radius: 5px;
   overflow: hidden;
@@ -152,6 +164,12 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .sidebar-item {
@@ -166,13 +184,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 10px;
   position: relative;
   background-size: cover;
   background-position: center;
   -webkit-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 0;
 }
 
 .sidebar-item__button {
@@ -236,21 +255,6 @@
   width: 60%;
 }
 
-@media screen and (max-width: 768px) {
-  .sidebar-items {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .sidebar-item {
-    margin-right: 10px;
-    margin-bottom: 0;
-  }
-}
-
 .compass-directions {
   background-position: center;
   background-size: contain;
@@ -283,8 +287,6 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  height: 100%;
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -294,6 +296,13 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  z-index: 999;
 }
 
 .compass-directions__text {
@@ -423,6 +432,7 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: hidden;
 }
 
 main .reminder {

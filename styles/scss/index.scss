@@ -38,6 +38,7 @@ main{
 	justify-content: stretch;
 	position:relative;
 	flex-direction: column;
+	overflow: hidden;
 
 	.reminder{
 		display: block;

@@ -1,4 +1,22 @@
 var isCompassEnabled = true
+var northAngle = 0
+const compassContainer = document.querySelector(".compass-directions-container")
+const compass = document.querySelector(".compass-directions")
+const compassText = document.querySelector(".compass-directions__text")
+const compassAngleInput = document.querySelector("#compassAngle")
+const compassOpacityInput = document.querySelector("#compassOpacity")
+const compassEnabledInput = document.querySelector("#compassEnabled")
+const compassSizeInput = document.querySelector("#compassSize")
+const compassImageInput = document.querySelector("#compassImage")
+const compassDirections = document.querySelectorAll(".compass-direction")
+const compassBoundsInput = document.querySelector("#compassBounds")
+const compassResetPositions = document.querySelector("#compassResetPositions")
+
+const sidebarItems = document.querySelector(".sidebar-items")
+const layers = document.querySelector(".layers")
+const layersWithCompass = []
+
+
 
 const addImageBtn = document.querySelector(".sidebar-item__button")
 const addImageInput = document.querySelector("#input-image")
@@ -21,8 +39,6 @@ const showSelectedImage = (event) => {
 	addSidebarItem(imageURL)
 	addLayer(imageURL)
 }
-
-const sidebarItems = document.querySelector(".sidebar-items")
 
 const addSidebarItem = (imageURL) => {
 	const newSidebarItem = document.createElement("li")
@@ -58,9 +74,6 @@ const addSidebarItem = (imageURL) => {
 	sidebarItems.append(sidebarItemButton)
 }
 
-const layers = document.querySelector(".layers")
-const layersWithCompass = []
-
 const handleAddCompassClick = (event, sidebarItem) => {
 	const sidebarItemInd = getSidebarItemInd(sidebarItem)
 	layersWithCompass.push(sidebarItemInd)
@@ -87,7 +100,7 @@ const addLayer = (imageURL) => {
 	const layersCount = layers.children.length - 1
 	const newLayer = document.createElement("div")
 	const newLayerInd = layersCount + 1
-	newLayer.className = `layer layer_${newLayerInd}`
+	newLayer.className = `layer layer_${newLayerInd} draggable`
 	newLayer.style.backgroundImage = `url(${imageURL})`
 	newLayer.style.zIndex = newLayerInd
 	layers.append(newLayer)
@@ -97,12 +110,6 @@ const getSidebarItemInd = (sidebarItem) => {
 	const sidebarItemInd = parseInt((sidebarItem.classList[1].split("_"))[1])
 	return sidebarItemInd
 }
-
-var isCompassEnabled = false
-var northAngle = 0
-const compass = document.querySelector(".compass-directions")
-const compassText = document.querySelector(".compass-directions__text")
-const compassAngleInput = document.querySelector("#compassAngle")
 
 /**
  * Watch for device movement
@@ -130,8 +137,6 @@ const rotateLayersWithCompass = (angle) => {
 	compass.style.transform = `rotate(${angle}deg)`
 }
 
-const compassEnabledInput = document.querySelector("#compassEnabled")
-
 const handleCompassEnabledChange = (event) => {
 	const isChecked = event.target.checked
 	isCompassEnabled = isChecked
@@ -149,21 +154,13 @@ const handleCompassAngleInputChange = (event) => {
 	rotateLayersWithCompass(angle)
 }
 
-const compassOpacityInput = document.querySelector("#compassOpacity")
-
 const handleCompassOpacityInputChange = (event) => {
 	compass.style.opacity = event.target.value / 100
 }
 
-const compassSizeInput = document.querySelector("#compassSize")
-const compassContainer = document.querySelector(".compass-directions-container")
-
 const handleCompassSizeInputChange = (event) => {
 	compassContainer.style.transform = `scale(${event.target.value})`
 }
-
-const compassImageInput = document.querySelector("#compassImage")
-const compassDirections = document.querySelectorAll(".compass-direction")
 
 const handleCompassImageInputChange = (event) => {
 	const [image] = compassImageInput.files
@@ -175,7 +172,6 @@ const handleCompassImageInputChange = (event) => {
 	}
 }
 
-const compassBoundsInput = document.querySelector("#compassBounds")
 const compassDefaultBounds = {
 	height:compass.style.height,
 	width:compass.style.width,
@@ -196,6 +192,34 @@ const handleCompassBoundsInputChange = (event) => {
 }
 
 addImageBtn.addEventListener("click", handleAddImageClick)
+
+interact(".draggable")
+.draggable({
+	autoScroll:true,
+	listeners:{
+		move:(event) => {
+			const {target} = event
+			var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
+			var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+
+			target.style.top = `${y}px`
+			target.style.left = `${x}px`
+
+			target.setAttribute('data-x', x)
+			target.setAttribute('data-y', y)
+		}
+	}
+})
+
+compassResetPositions.addEventListener("click", () => {
+	document.querySelectorAll(".layer").forEach(layer => {
+		layer.style.top = "0%"
+		layer.style.left = "0%"
+	})
+	compassContainer.style.top = "0%"
+	compassContainer.style.left = "0%"
+})
+
 if(window.DeviceOrientationEvent && 'ontouchstart' in window){
 	isCompassEnabled = true
 	window.addEventListener("deviceorientationabsolute", handleDeviceOrientation)

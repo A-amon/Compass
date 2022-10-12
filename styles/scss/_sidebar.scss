@@ -7,6 +7,8 @@ $sidebar-size:100px;
 		list-style: none;
 		padding:0;
 		margin:0;
+		display:flex;
+		align-items: center;
 	}
 
 	&-item{
@@ -15,12 +17,13 @@ $sidebar-size:100px;
 		display:flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: 10px;
 		position:relative;
 		background-size: cover;
 		background-position: center;
 		box-shadow: 0 0 5px 3px rgba(0,0,0,0.1);
 		border-radius:5px;
+		margin-right:10px;
+		margin-bottom:0;
 
 		&__button{
 			border:none;
@@ -73,18 +76,6 @@ $sidebar-size:100px;
 				height:60%;
 				width:60%;
 			}
-		}
-	}
-
-	@include max-query($d-max-small){
-		&-items{
-			display:flex;
-			align-items: center;
-		}
-
-		&-item{
-			margin-right:10px;
-			margin-bottom:0;
 		}
 	}
 }

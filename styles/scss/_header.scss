@@ -1,8 +1,17 @@
 .header{
 	text-align: center;
 	.settings{
-		max-width: fit-content;
-		margin:auto;
+		position: relative;
+		&__body{
+			position: absolute;
+			background: white;
+			left: 0;
+			right: 0;
+			margin: auto;
+			max-width: fit-content;
+			z-index: 1000;
+		}
+
 		&__items{
 			display: flex;
 			flex-direction:column;

@@ -12,7 +12,7 @@
 		<strong class="reminder">Please enable Location for accurate reading</strong>
 		<details class="settings">
 			<summary>Settings</summary>
-			<div>
+			<div class="settings__body">
 				<fieldset class="settings__items">
 					<label class="header-enable" for="compassEnabled">
 						Enable Compass?
@@ -38,13 +38,14 @@
 						Remove Compass Bounds
 						<input type="checkbox" id="compassBounds">
 					</label>
+					<Button id="compassResetPositions">Reset Positions</Button>
 				</fieldset>
 			</div>
 		</details>
 	</header>
 	<main>
 		<div class="compass">
-			<div class="compass-directions-container">
+			<div class="compass-directions-container draggable">
 				<div class="compass-directions">
 					<p class="compass-direction compass-direction--north">N</p>
 					<p class="compass-direction compass-direction--east">E</p>
@@ -67,6 +68,7 @@
 			</li>
 		</ul>
 	</aside>
+	<script src="interact.js"></script>
 	<script src="index.js"></script>
 </body>
 </html>
