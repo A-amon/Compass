@@ -1,5 +1,20 @@
 
 .compass{
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	z-index: 999;
+	max-height:fit-content;
+	max-width: fit-content;
+	&-container{
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	&-directions{
 		background-position: center;
 		background-size: contain;
@@ -13,22 +28,6 @@
 		align-items: center;
 		justify-content: center;
 		transition:transform 0.3s linear;
-
-		&-container{
-			overflow: hidden;
-			position:absolute;
-			top:0;
-			left:0;
-			right:0;
-			bottom:0;
-			margin:auto;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			max-height: fit-content;
-			max-width: fit-content;
-			z-index: 999;
-		}
 
 		&__text{
 			font-size: 2rem;

@@ -1,6 +1,6 @@
 var isCompassEnabled = true
 var northAngle = 0
-const compassContainer = document.querySelector(".compass-directions-container")
+const compassContainer = document.querySelector(".compass-container")
 const compass = document.querySelector(".compass-directions")
 const compassText = document.querySelector(".compass-directions__text")
 const compassAngleInput = document.querySelector("#compassAngle")
@@ -101,8 +101,9 @@ const addLayer = (imageURL) => {
 	const newLayer = document.createElement("div")
 	const newLayerInd = layersCount + 1
 	newLayer.className = `layer layer_${newLayerInd} draggable`
-	newLayer.style.backgroundImage = `url(${imageURL})`
 	newLayer.style.zIndex = newLayerInd
+	newLayer.innerHTML = "<div class='layer-container'></div>"
+	newLayer.children[0].style.backgroundImage = `url(${imageURL})`
 	layers.append(newLayer)
 }
 
@@ -132,7 +133,7 @@ const handleDeviceOrientation = (event) => {
  */
 const rotateLayersWithCompass = (angle) => {
 	for(const layerInd of layersWithCompass){
-		layers.children[layerInd].style.transform = `rotate(${angle}deg)`
+		layers.children[layerInd].children[0].style.transform = `rotate(${angle}deg)`
 	}
 	compass.style.transform = `rotate(${angle}deg)`
 }
@@ -195,6 +196,7 @@ addImageBtn.addEventListener("click", handleAddImageClick)
 
 interact(".draggable")
 .draggable({
+	inertia:true,
 	autoScroll:true,
 	listeners:{
 		move:(event) => {
@@ -202,8 +204,7 @@ interact(".draggable")
 			var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
 			var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
 
-			target.style.top = `${y}px`
-			target.style.left = `${x}px`
+			target.style.transform = `translate(${x}px, ${y}px)`
 
 			target.setAttribute('data-x', x)
 			target.setAttribute('data-y', y)
@@ -212,12 +213,11 @@ interact(".draggable")
 })
 
 compassResetPositions.addEventListener("click", () => {
+	const initialTranslateCoords = "translate(0, 0)"
 	document.querySelectorAll(".layer").forEach(layer => {
-		layer.style.top = "0%"
-		layer.style.left = "0%"
+		layer.style.transform = initialTranslateCoords
 	})
-	compassContainer.style.top = "0%"
-	compassContainer.style.left = "0%"
+	compassContainer.style.transform = initialTranslateCoords
 })
 
 if(window.DeviceOrientationEvent && 'ontouchstart' in window){
